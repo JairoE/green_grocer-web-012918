@@ -19,10 +19,28 @@ end
 
 def apply_coupons(cart, coupons)
 
+  updated_cart={}
   cart.each do |item, info|
     coupons.each do |coupon, specs|
+      if item == specs[:item]
+        if info[:count] == specs[:num]
+          updated_cart["#{item} W/ COUPON"] = info
+          updated_cart["#{item} W/ COUPON"][:count] = 1
+          updated_cart["#{item} W/ COUPON"][:price] = specs[:price]
+        elsif info[:count] > specs[:num]
+          updated_cart["#{item}"] = info
+          updated_cart["#{item}"][:count] = info[:count] - specs[:num]
+          updated_cart["#{item} W/ COUPON"] = info
+          updated_cart["#{item} W/ COUPON"][:count] = 1
+          updated_cart["#{item} W/ COUPON"][:price] = specs[:price]
+        end
+      end
+          
+          
     end
   end
+
+  updated_cart
 end
 
 def apply_clearance(cart)
