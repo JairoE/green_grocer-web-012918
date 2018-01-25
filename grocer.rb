@@ -35,8 +35,8 @@ def apply_coupons(cart, coupons)
           updated_cart["#{item} W/ COUPON"][:price] = specs[:price]
         end
       end
-          
-          
+
+
     end
   end
 
