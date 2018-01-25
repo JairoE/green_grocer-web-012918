@@ -1,3 +1,4 @@
+require 'pry'
 def consolidate_cart(cart)
   # code here
   consolidated = {}
@@ -20,7 +21,9 @@ end
 def apply_coupons(cart, coupons)
 
   updated_cart={}
+
   cart.each do |item, info|
+    binding.pry
     coupons.each do |coupon, specs|
       if item == specs[:item]
         if info[:count] == specs[:num]
